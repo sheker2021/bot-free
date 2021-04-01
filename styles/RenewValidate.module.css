@@ -1,0 +1,112 @@
+.dashboard {
+    margin: 0 30px;
+}
+
+.dashboard p {
+    margin-bottom: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.remaing {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.remaing p {
+    font-size: 18px;
+    color: #22384a;
+    margin-left: -100px;
+}
+
+.remaing svg {
+    height: 50px;
+    width: 50px;
+    color: var(--blue);
+}
+
+.undraw img {
+    height: 330px;
+}
+
+.countdownContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Rajdhani;
+    color: var(--title);
+}
+
+.countdownContainer>div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: var(--white);
+    box-shadow: 0 0 50px rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    font-size: 8.5rem;
+    text-align: center;
+}
+
+.countdownContainer>div span {
+    flex: 1;
+}
+
+.countdownContainer>div span:first-child {
+    border-right: 1px solid #f0f1f3;
+}
+
+.countdownContainer>div span:last-child {
+    border-left: 1px solid #f0f1f3;
+}
+
+.countdownContainer>span {
+    font-size: 6.25rem;
+    margin: 0 0.25rem;
+}
+
+.countDownButton {
+    padding: 1rem;
+    width: 300px;
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 8px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: all ease .2s;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.countDownButton:not(:disabled):hover {
+    background: var(--blue-dark);
+}
+
+.countDownButtonReloading {
+    background: var(--red);
+}
+
+.countDownButtonReloading:not(:disabled):hover {
+    cursor: not-allowed;
+    opacity: .8;
+    background: var(--red);
+}
+
+.countDownButton:disabled {
+    background: var(--white);
+    color: var(--text);
+    cursor: not-allowed;
+    border-bottom: 3px solid var(--red);
+}

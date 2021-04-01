@@ -1,0 +1,102 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container form {
+    margin-top: 150px;
+}
+
+.container form select,
+.container form .inputText {
+    margin-bottom: 15px;
+}
+
+.content {
+    border: solid 1px #e1e1e1;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.contentTitle {
+    background-color: #34495e;
+    color: #ecf0f1;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 5px 25px;
+    font-size: 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.contentAll {
+    padding: 50px 100px;
+}
+
+.contentAll label {
+    color: var(--gray-line);
+    font-size: 20px;
+    vertical-align: top;
+    cursor: pointer;
+}
+
+.container form .inputText,
+.container form select {
+    font-size: 15px;
+    color: var(--text);
+    width: 100%;
+    height: 40px;
+    padding: 10px 16px 10px 16px;
+    border: solid 1px #e1e1e1;
+    background-color: #fcfcfc;
+    border-radius: 5px;
+    transition: linear .2s;
+    display: block;
+}
+
+.container form p {
+    margin: 0;
+}
+
+.saveButton {
+    margin-bottom: 30px;
+}
+
+.countDownButton {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 8px;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: 400;
+    transition: background-color .2s;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.countDownButton:not(:disabled):hover {
+    background: var(--blue-dark);
+}
+
+.countDownButtonActive {
+    background: var(--white);
+    color: var(--title);
+}
+
+.countDownButtonActive:not(:disabled):hover {
+    background: var(--red);
+    color: var(--white);
+}
+
+.countDownButton:disabled {
+    background: var(--white);
+    color: var(--text);
+    cursor: not-allowed;
+    border-bottom: 3px solid var(--red);
+}
