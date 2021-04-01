@@ -4,6 +4,7 @@ import { Component } from 'react'
 import firebase from 'firebase/app'
 import Router from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 
 interface MyProps {
 
@@ -58,10 +59,10 @@ export default class Register extends Component<MyProps, MyState>{
     render() {
         return (
             <div className={styles.container}>
-            <Head>
-                <title>Registrar-se - Bot Free</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+                <Head>
+                    <title>Cadastro - Bot Free</title>
+                    <link rel="icon" href="/favicon.ico" />
+                </Head>
                 <form onSubmit={this.handleSubmit}>
                     <div className={styles.content}>
                         <div className={styles.contentTitle}>
@@ -85,12 +86,17 @@ export default class Register extends Component<MyProps, MyState>{
                                     onChange={this.handleChange}
                                     required
                                 />
-                                <button
-                                    type="submit"
-                                    className={`${styles.countDownButton}`}
-                                >
-                                    Cadastrar-se
-                            </button>
+                                <div className={styles.footer}>
+                                    <button
+                                        type="submit"
+                                        className={`${styles.countDownButton}`}
+                                    >
+                                        Cadastrar
+                                    </button>
+                                    <Link href="/login">
+                                        <a>Já tem conta? Clique aqui para fazer login</a>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

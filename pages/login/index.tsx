@@ -4,6 +4,7 @@ import { Component } from 'react'
 import firebase from 'firebase/app'
 import Router from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 
 interface MyProps {
 
@@ -85,12 +86,17 @@ export default class Login extends Component<MyProps, MyState>{
                                     onChange={this.handleChange}
                                     required
                                 />
-                                <button
-                                    type="submit"
-                                    className={`${styles.countDownButton}`}
-                                >
-                                    Entrar
-                            </button>
+                                <div className={styles.footer}>
+                                    <button
+                                        type="submit"
+                                        className={`${styles.countDownButton}`}
+                                    >
+                                        Entrar
+                                    </button>
+                                    <Link href="/register">
+                                        <a>Não tem conta? Clique aqui para se cadastrar</a>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     </div>

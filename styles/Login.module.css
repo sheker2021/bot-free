@@ -20,6 +20,18 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
 }
 
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contentItens {
+    max-width: 350px;
+    min-width: 350px;
+}
+
 .contentTitle {
     background-color: #34495e;
     color: #ecf0f1;
@@ -78,6 +90,7 @@
     transition: background-color .2s;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
 }
 
 .countDownButton:not(:disabled):hover {
