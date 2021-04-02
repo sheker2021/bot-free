@@ -45,7 +45,7 @@ export default function RenewValidate ({ userId, userData, setUserData }){
         } else if (isActive && time == 0) {
             setHasFinished(true)
             setIsActive(false)
-            setDaysVip(daysVip + 1)
+            setDaysVip(1)
             handleRenew()
             setIsModalOpen(true)
         }

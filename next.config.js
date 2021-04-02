@@ -8,6 +8,8 @@ module.exports = {
         projectId: process.env.projectId,
         storageBucket: process.env.storageBucket,
         messagingSenderId: process.env.messagingSenderId,
-        appId: process.env.appId
+        appId: process.env.appId,
+        RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
+        RECAPTCHA_SECRET_KEY: process.env.RECAPTCHA_SECRET_KEY
     },
 }

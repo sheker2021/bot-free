@@ -72,7 +72,7 @@ export default class Login extends Component<MyProps, MyState>{
                             <div className={styles.contentItens}>
                                 <p>E-mail</p>
                                 <input
-                                    type="text"
+                                    type="email"
                                     name="email"
                                     className={styles.inputText}
                                     onChange={this.handleChange}

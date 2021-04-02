@@ -90,8 +90,6 @@ export default {
             validity,
         } = userData
 
-        console.log(userId)
-
         await db.collection('users').doc(userId).update({
             userBot: ({
                 validity,

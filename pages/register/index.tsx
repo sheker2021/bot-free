@@ -1,10 +1,11 @@
 import styles from '../../styles/Login.module.css'
 import Api from '../../services/api'
-import { Component } from 'react'
+import { Component, createRef } from 'react'
 import firebase from 'firebase/app'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
+import ReCAPTCHA from "react-google-recaptcha"
 
 interface MyProps {
 
@@ -15,7 +16,9 @@ interface MyState {
     password: string
 }
 
+
 export default class Register extends Component<MyProps, MyState>{
+    public recaptchaRef
 
     constructor(props) {
         super(props)
@@ -26,7 +29,8 @@ export default class Register extends Component<MyProps, MyState>{
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.authListener = this.authListener.bind(this);
+        this.authListener = this.authListener.bind(this)
+        this.recaptchaRef = createRef()
     }
     handleChange(event) {
         const target = event.target
@@ -39,7 +43,12 @@ export default class Register extends Component<MyProps, MyState>{
 
     async handleSubmit(event) {
         event.preventDefault();
-        await Api.createUser(this.state.email, this.state.password)
+        const token = await this.recaptchaRef.current.executeAsync();
+        if(token){
+            await Api.createUser(this.state.email, this.state.password)
+        }else{
+            alert('Erro de reCaptcha')
+        }
     }
 
     componentDidMount() {
@@ -56,6 +65,13 @@ export default class Register extends Component<MyProps, MyState>{
         })
     }
 
+    onReCAPTCHAChange = (captchaCode) => {
+        if(!captchaCode) {
+          return;
+        }
+        this.recaptchaRef.current.reset();
+      }
+
     render() {
         return (
             <div className={styles.container}>
@@ -64,6 +80,12 @@ export default class Register extends Component<MyProps, MyState>{
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <form onSubmit={this.handleSubmit}>
+                    <ReCAPTCHA
+                        ref={this.recaptchaRef}
+                        size="invisible"
+                        sitekey={process.env.RECAPTCHA_SITE_KEY}
+                        onChange={this.onReCAPTCHAChange}
+                    />
                     <div className={styles.content}>
                         <div className={styles.contentTitle}>
                             Cadastro
@@ -72,7 +94,7 @@ export default class Register extends Component<MyProps, MyState>{
                             <div className={styles.contentItens}>
                                 <p>E-mail</p>
                                 <input
-                                    type="text"
+                                    type="email"
                                     name="email"
                                     className={styles.inputText}
                                     onChange={this.handleChange}
