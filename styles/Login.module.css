@@ -5,7 +5,7 @@
 }
 
 .container form {
-    margin-top: 150px;
+    margin-top: 100px;
 }
 
 .container form select,
@@ -18,6 +18,11 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+.header {
+    text-align: center;
+    color: var(--red);
 }
 
 .footer {

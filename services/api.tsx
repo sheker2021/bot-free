@@ -99,6 +99,7 @@ export default {
 
     createUser: async (email, password) => {
         const dataNow = new Date()
+        let response = null
         dataNow.setDate(dataNow.getDate() - 1)
 
         await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -138,22 +139,23 @@ export default {
                         last_name: ''
                     }),
                 })
-                return 'success'
+                response = 'Usuário criado com sucesso!'
             })
             .catch(error => {
-                alert(error.toString());
-                return error.toString()
-            });
+                response = error.toString()
+            })
+        return response
     },
 
     loginUser: async (email, password) => {
-
+        let response = null
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(data => {
                 localStorage.setItem('userID', data.user.uid);
             })
             .catch(error => {
-                alert(error.toString());
+                response = (error.toString());
             });
+        return response
     },
 }

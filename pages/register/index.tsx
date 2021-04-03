@@ -14,6 +14,7 @@ interface MyState {
     user: {},
     email: string,
     password: string
+    message: string
 }
 
 
@@ -25,7 +26,8 @@ export default class Register extends Component<MyProps, MyState>{
         this.state = {
             user: null,
             email: null,
-            password: null
+            password: null,
+            message: 'Não utilize a sua senha da IQ Option!'
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -45,9 +47,10 @@ export default class Register extends Component<MyProps, MyState>{
         event.preventDefault();
         const token = await this.recaptchaRef.current.executeAsync();
         if(token){
-            await Api.createUser(this.state.email, this.state.password)
+            const create = await Api.createUser(this.state.email, this.state.password)
+            this.setState({message: create})
         }else{
-            alert('Erro de reCaptcha')
+            this.setState({message: 'Erro de reCaptcha'})
         }
     }
 
@@ -92,6 +95,9 @@ export default class Register extends Component<MyProps, MyState>{
                     </div>
                         <div className={styles.contentAll}>
                             <div className={styles.contentItens}>
+                                <div className={styles.header}>
+                                    <h4>{this.state.message}</h4>
+                                </div>
                                 <p>E-mail</p>
                                 <input
                                     type="email"
