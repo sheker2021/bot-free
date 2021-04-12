@@ -11,6 +11,7 @@ if (firebase.apps.length === 0) {
 const db = firebase.firestore()
 
 export default {
+
     getUser: async (userId) => {
         var data = null
         let results = await db.collection('users').get()
@@ -88,11 +89,13 @@ export default {
         const {
             userId,
             validity,
+            vip,
         } = userData
 
         await db.collection('users').doc(userId).update({
             userBot: ({
                 validity,
+                vip,
             })
         })
     },

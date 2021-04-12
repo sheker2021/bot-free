@@ -5,7 +5,7 @@ import Api from '../services/api'
 
 let countdownTimeout: NodeJS.Timeout
 
-export default function RenewValidate ({ userId, userData, setUserData }){
+export default function RenewValidate ({ userId, userData, vip, setUserData }){
     let timeDefault = 30
     const dayDefaultToRenew = 1
     const [daysVip, setDaysVip] = useState(0)
@@ -28,7 +28,8 @@ export default function RenewValidate ({ userId, userData, setUserData }){
         d.setDate(d.getDate() + dayDefaultToRenew)
         const data = {
             userId,
-            validity: d
+            validity: d,
+            vip,
         }
         setUserData({
             validity: {seconds: d.getTime() / 1000}
@@ -79,7 +80,7 @@ export default function RenewValidate ({ userId, userData, setUserData }){
                             disabled
                             className={styles.countDownButton}
                         >
-                            Recarga não disponível
+                            Recarga indisponível
                         </button>
                     ) : (
                         isActive ? (
@@ -96,7 +97,7 @@ export default function RenewValidate ({ userId, userData, setUserData }){
                                 className={`${styles.countDownButton}`}
                                 onClick={startCountDown}
                             >
-                                Realizar recarga gratuita
+                                Recarga gratuita
                             </button>
                         )
                     )}
