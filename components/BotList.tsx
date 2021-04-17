@@ -89,7 +89,7 @@ export default class BotList extends Component<MyProps, MyState> {
                                     this.state.listBotApi.join('\n')
                                 }
                                 onChange={this.handleChange}
-                                placeholder="Formato aceito&#10;M5;EURJPY;11:05;PUT;&#10;M5;AUDCAD;12:05;CALL;"
+                                placeholder="Formato aceito&#10;M5;EURJPY;11:05:00;PUT;&#10;M5;AUDCAD;12:05:00;CALL;"
                                 required>
                             </textarea>
                         </div>

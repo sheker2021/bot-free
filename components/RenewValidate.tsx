@@ -66,8 +66,8 @@ export default function RenewValidate ({ userId, userData, vip, setUserData }){
             <h1>Recarga diária gratuita</h1>
             <p>
                 Você tem direito a uma recarga gratuita por dia
-                caso exceda o limite de validade.
-                Também é possível comprar dias com o administrador do grupo no Telegram!
+                caso exceda a validade.
+                Também é possível se tornar VIP, basta chamar o administrador do grupo no Telegram!
             </p>
             <div className={styles.container}>
                 <div className={styles.countdownContainer}>

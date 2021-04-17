@@ -15,7 +15,7 @@ import {
     Cached,
     FormatListBulleted,
     Settings,
-    CloudDownload,
+    Telegram,
     TrackChanges,
     Favorite
 } from '@material-ui/icons';
@@ -107,11 +107,11 @@ export default function Dashboard() {
                         <Favorite />
                     Salas de sinais
                 </a>
-                    <a href="#" className={activeOption == 5 ? styles.active : ''}>
-                        <CloudDownload />
-                    Download
+                    <a href="https://t.me/iqtoptraders" className={activeOption == 5 ? styles.active : ''}>
+                        <Telegram />
+                    Grupo Telegram
                 </a>
-                    <p>v1.0.0</p>
+                    <p>v0.0.2</p>
                 </div>
 
             </div>
