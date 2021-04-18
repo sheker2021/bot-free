@@ -1,6 +1,8 @@
 import { Component, useState } from 'react'
 import styles from '../styles/BotConfig.module.css'
 import Api from '../services/api'
+import { LevelUpModal } from './ModalCiclos'
+import { SettingsBackupRestore } from '@material-ui/icons';
 
 interface MyProps {
     userId: String
@@ -16,6 +18,9 @@ interface MyState {
     payoutType: string,
     money: number,
     payoutMin: number,
+    delay: number,
+    resultByTaxa: boolean,
+    cycles: [],
     telegram: boolean,
     telegramID: number,
     galeOrSoros: string,
@@ -30,7 +35,8 @@ interface MyState {
     traderTimerZoner: boolean,
     news: boolean,
     candleHit: boolean,
-    buttonText: string
+    buttonText: string,
+    isModalOpen: boolean,
 }
 
 export default class BotConfig extends Component<MyProps, MyState> {
@@ -40,6 +46,9 @@ export default class BotConfig extends Component<MyProps, MyState> {
             payoutType,
             money,
             payoutMin,
+            delay,
+            resultByTaxa,
+            cycles,
             telegram,
             telegramID,
             galeOrSoros,
@@ -66,6 +75,9 @@ export default class BotConfig extends Component<MyProps, MyState> {
             payoutType,
             money,
             payoutMin,
+            delay,
+            resultByTaxa,
+            cycles,
             telegram,
             telegramID,
             galeOrSoros,
@@ -81,9 +93,12 @@ export default class BotConfig extends Component<MyProps, MyState> {
             news,
             candleHit,
             buttonText: 'Salvar configurações',
+            isModalOpen: false,
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.closeModal   = this.closeModal.bind(this)
+        this.cyclesModal  = this.cyclesModal.bind(this)
     }
 
     handleChange(event) {
@@ -106,6 +121,14 @@ export default class BotConfig extends Component<MyProps, MyState> {
         this.setState({buttonText: 'Salvo com sucesso!'})
     }
 
+    closeModal(){
+        this.setState({isModalOpen: false})
+    }
+
+    cyclesModal(cycles){
+        this.setState({cycles})
+    }
+
     render() {
         return (
             <div className={styles.dashboard}>
@@ -119,7 +142,7 @@ export default class BotConfig extends Component<MyProps, MyState> {
                         <div className={styles.content}>
                             <div className={styles.contentTitle}>
                                 Geral
-                        </div>
+                            </div>
                             <div className={styles.contentAll}>
                                 <div className={styles.contentItens}>
                                     <p>Tipo de conta</p>
@@ -184,6 +207,17 @@ export default class BotConfig extends Component<MyProps, MyState> {
                                         defaultValue={this.state.telegramID}
                                         onChange={this.handleChange}
                                         placeholder="ID Telegram"
+                                    />
+                                </div>
+                                <div className={styles.contentItens}>
+                                    <p style={{marginTop: '17px'}}>Delay</p>
+                                    <input
+                                        className={styles.inputText}
+                                        type="number"
+                                        name="delay"
+                                        defaultValue={this.state.delay}
+                                        onChange={this.handleChange}
+                                        required
                                     />
                                 </div>
                             </div>
@@ -276,6 +310,45 @@ export default class BotConfig extends Component<MyProps, MyState> {
                                         onChange={this.handleChange}
                                     />
                                     <label htmlFor="nextSignal">Próximo sinal</label>
+                                </div>
+                                <div className={styles.contentItens} style={this.state.userIsVip ? { cursor: 'unset' } : { cursor: 'not-allowed' }}>
+                                    <input
+                                        className={styles.inputCheckRadio}
+                                        type="radio"
+                                        name="galeOrSoros"
+                                        id="ciclos"
+                                        value="ciclos"
+                                        defaultChecked={this.state.galeOrSoros === 'ciclos'}
+                                        disabled={this.state.userIsVip ? false : true}
+                                        onChange={this.handleChange}
+                                    />
+                                    <label htmlFor="ciclos">
+                                        Ciclos 
+                                        <strong style={{color: '#f1c40f'}}> VIP</strong>
+                                    </label>
+                                    <button 
+                                        className={styles.ciclosBtn} 
+                                        type="button"
+                                        onClick={() => this.setState({ isModalOpen: true})}
+                                        disabled={this.state.userIsVip ? false : true}
+                                    >
+                                        <SettingsBackupRestore /> Configurar ciclos
+                                    </button>
+                                </div>
+                                <div className={styles.contentItens} style={this.state.userIsVip ? { cursor: 'unset' } : { cursor: 'not-allowed' }}>
+                                    <input
+                                        type="checkbox"
+                                        className={styles.inputCheckRadio}
+                                        id="resultByTaxa"
+                                        name="resultByTaxa"
+                                        defaultChecked={this.state.resultByTaxa}
+                                        onChange={this.handleChange}
+                                        disabled={this.state.userIsVip ? false : true}
+                                    />
+                                    <label htmlFor="resultByTaxa">
+                                        Resultado por taxa
+                                        <strong style={{color: '#f1c40f'}}> VIP</strong>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -378,6 +451,7 @@ export default class BotConfig extends Component<MyProps, MyState> {
                         </div>
                     </form>
                 </div>
+                {this.state.isModalOpen && <LevelUpModal cycleState={this.state.cycles} cyclesModal={this.cyclesModal} setIsModalOpen={this.closeModal} />}
             </div>
         )
     }

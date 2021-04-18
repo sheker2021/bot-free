@@ -127,7 +127,6 @@ export default function Dashboard() {
                         {activeOption === 2 && <RenewValidate
                             userId={userId}
                             userData={userData.validity}
-                            vip={userData.vip}
                             setUserData={setUserData}
                         />}
                         {activeOption === 3 && <BotList

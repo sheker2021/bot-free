@@ -30,6 +30,9 @@ export default {
             payoutType,
             money,
             payoutMin,
+            delay,
+            resultByTaxa,
+            cycles,
             telegram,
             telegramID,
             galeOrSoros,
@@ -52,6 +55,9 @@ export default {
                 payoutType,
                 money,
                 payoutMin,
+                delay,
+                resultByTaxa,
+                cycles,
                 telegram,
                 telegramID,
                 galeOrSoros,
@@ -100,6 +106,14 @@ export default {
         })
     },
 
+    setCycles: async (userId, cycles) => {
+        await db.collection('users').doc(userId).update({
+            config: ({
+                cycles
+            })
+        })
+    },
+
     createUser: async (email, password) => {
         const dataNow = new Date()
         let response = null
@@ -119,6 +133,9 @@ export default {
                        news: false,
                        nextCandleOrSignal: 'nextCandle',
                        payoutMin: 70,
+                       delay: 2,
+                       resultByTaxa: false,
+                       cycles: [";;;;;", ";;;;;", ";;;;;", ";;;;;", ";;;;;"],
                        payoutType: 'MAIOR',
                        sorosLevel: 2,
                        sorosPercent: 50,

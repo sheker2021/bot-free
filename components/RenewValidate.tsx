@@ -5,7 +5,7 @@ import Api from '../services/api'
 
 let countdownTimeout: NodeJS.Timeout
 
-export default function RenewValidate ({ userId, userData, vip, setUserData }){
+export default function RenewValidate ({ userId, userData, setUserData }){
     let timeDefault = 30
     const dayDefaultToRenew = 1
     const [daysVip, setDaysVip] = useState(0)
@@ -29,7 +29,7 @@ export default function RenewValidate ({ userId, userData, vip, setUserData }){
         const data = {
             userId,
             validity: d,
-            vip,
+            vip: false,
         }
         setUserData({
             validity: {seconds: d.getTime() / 1000}
